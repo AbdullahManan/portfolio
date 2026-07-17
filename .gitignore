@@ -1,0 +1,23 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node (if you add later)
+node_modules/
+
+# Logs
+*.log
+
+# Env files (important later)
+.env
+
+# VS Code settings
+.vscode/
+
+# Temporary files
+*.tmp
+*.cache
+
+Optional: ignore large raw images (if needed)
+*.psd
+*.raw
