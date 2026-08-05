@@ -406,6 +406,60 @@ h1, h2, h3, .display-font{
     letter-spacing:.04em;
 }
 
+.site-footer .footer-logo{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:1.1rem;
+    color:var(--paper);
+}
+.site-footer .footer-logo .dot{color:var(--amber);}
+
+.site-footer .footer-tagline{
+    color:var(--slate);
+    font-size:.88rem;
+    max-width:24rem;
+    margin-top:.6rem;
+    line-height:1.6;
+}
+
+.site-footer .footer-heading{
+    font-family:'JetBrains Mono',monospace;
+    font-size:.72rem;
+    color:var(--slate);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    margin-bottom:.9rem;
+}
+
+.site-footer ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+.site-footer ul li{margin-bottom:.6rem;}
+.site-footer ul li a{
+    color:var(--paper);
+    text-decoration:none;
+    font-size:.9rem;
+    transition:color .2s ease;
+}
+.site-footer ul li a:hover{color:var(--amber);}
+
+.footer-bottom{
+    border-top:1px solid var(--border);
+    margin-top:2.5rem;
+    padding-top:1.4rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:.8rem 1.5rem;
+    align-items:center;
+    justify-content:space-between;
+    font-family:'JetBrains Mono',monospace;
+    font-size:.76rem;
+    color:var(--slate);
+}
+.footer-bottom .built-with span{color:var(--teal);}
+
 /* ---------- SINGLE-PAGE SCROLL LAYOUT ---------- */
 section[id]{
     scroll-margin-top:88px;
