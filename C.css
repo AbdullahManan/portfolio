@@ -44,6 +44,19 @@ h1, h2, h3, .display-font{
 }
 .navbar .logo .dot{color:var(--amber);}
 
+.nav-avatar{
+    width:34px;
+    height:34px;
+    border-radius:8px;
+    object-fit:cover;
+    margin-right:.65rem;
+    border:1.5px solid var(--border);
+    transition:border-color .2s ease;
+}
+.navbar-brand:hover .nav-avatar{
+    border-color:var(--amber);
+}
+
 .nav-links a{
     color:var(--slate);
     text-decoration:none;
