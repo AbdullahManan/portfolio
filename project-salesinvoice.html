@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <title>Sales Invoice Project — Abdullah Manan</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="C.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand logo d-flex align-items-center" href="index.html#home">
+                <img src="images/profile.jpg" alt="Abdullah Manan" class="nav-avatar">
+                Abdullah Manan<span class="dot">.</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <i class="bi bi-list" style="font-size:1.6rem;">☰</i>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+                <ul class="navbar-nav nav-links">
+                    <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================= HERO ================= -->
+    <section class="project-hero">
+        <div class="container position-relative">
+            <a href="index.html#projects" class="back-link">← Back to Projects</a>
+
+            <div class="eyebrow mono mb-3">internship project</div>
+            <h1>Sales Invoice Management System</h1>
+            <p class="lede">
+                A full-stack ASP.NET Core MVC application for managing product inventory,
+                sales invoicing, and business reporting — built end-to-end during my internship.
+            </p>
+
+            <div class="tech-badges">
+                <span class="tech-badge">ASP.NET Core MVC</span>
+                <span class="tech-badge">EF Core</span>
+                <span class="tech-badge">SQL Server</span>
+                <span class="tech-badge">ASP.NET Core Identity</span>
+                <span class="tech-badge">AdminLTE 4</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= OVERVIEW ================= -->
+    <section class="detail-section">
+        <div class="container">
+            <div class="section-heading">
+                <span class="section-num mono">01</span>
+                <span class="eyebrow mono">overview</span>
+            </div>
+            <p class="overview-text">
+                Built during my internship to manage product inventory, sales invoicing, and
+                reporting for a small-business workflow. The system handles the full cycle —
+                from stock tracking and invoice creation to role-based staff access and printable
+                reports — replacing what would otherwise be a manual, spreadsheet-driven process
+                with a structured, auditable web application.
+            </p>
+        </div>
+    </section>
+
+    <!-- ================= SCREENSHOTS ================= -->
+    <section class="detail-section">
+        <div class="container">
+            <div class="section-heading">
+                <span class="section-num mono">02</span>
+                <span class="eyebrow mono">screenshots</span>
+            </div>
+
+            <div class="screenshot-grid" id="screenshotGrid"></div>
+        </div>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+    <section class="detail-section">
+        <div class="container">
+            <div class="section-heading">
+                <span class="section-num mono">03</span>
+                <span class="eyebrow mono">key features</span>
+            </div>
+
+            <ul class="feature-list">
+                <li>Role-based authentication (Admin / SalesRep) via ASP.NET Core Identity</li>
+                <li>Real-time stock validation during invoice creation</li>
+                <li>Dynamic multi-line invoice entry with live total calculation</li>
+                <li>Sales &amp; Product reports with multiple filter modes — date range, month, year, by-product</li>
+                <li>PDF export via browser print, with a dedicated 80mm thermal receipt layout</li>
+                <li>Admin-only user management with password reset</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ================= TECHNICAL HIGHLIGHTS ================= -->
+    <section class="detail-section">
+        <div class="container">
+            <div class="section-heading">
+                <span class="section-num mono">04</span>
+                <span class="eyebrow mono">technical highlights</span>
+            </div>
+
+            <div class="highlight-card">
+                <p><strong>Runtime stock availability.</strong> Rather than storing a mutable "remaining stock" field, available quantity is computed on the fly as opening stock minus the sum of quantities already committed across invoice line items — preventing overselling even when multiple invoices reference the same product concurrently.</p>
+            </div>
+            <div class="highlight-card">
+                <p><strong>Cross-row stock sync.</strong> When a product is added to more than one line item in the same invoice, the UI recalculates and caps available quantity live across all matching rows — not just the row being edited — so a user can't accidentally oversell a product within a single invoice.</p>
+            </div>
+            <div class="highlight-card">
+                <p><strong>Print-safe layout isolation.</strong> Report and receipt views use a dedicated print layout with scoped <code>@@media print</code> rules, resolving CSS specificity conflicts between the admin theme and the print output so the printed document stays clean regardless of the active dashboard styling.</p>
+            </div>
+            <div class="highlight-card">
+                <p><strong>Save-then-print flow.</strong> Invoice creation uses an AJAX save step before triggering the print dialog, ensuring the invoice is persisted and assigned a real ID before a receipt is generated — avoiding orphaned print-outs for invoices that failed validation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= TECH STACK ================= -->
+    <section class="detail-section">
+        <div class="container">
+            <div class="section-heading">
+                <span class="section-num mono">05</span>
+                <span class="eyebrow mono">tech stack</span>
+            </div>
+
+            <div class="stack-grid">
+                <span class="stack-chip"><span class="stack-dot"></span>ASP.NET Core MVC</span>
+                <span class="stack-chip"><span class="stack-dot"></span>Entity Framework Core</span>
+                <span class="stack-chip"><span class="stack-dot"></span>SQL Server</span>
+                <span class="stack-chip"><span class="stack-dot"></span>ASP.NET Core Identity</span>
+                <span class="stack-chip"><span class="stack-dot"></span>AdminLTE 4</span>
+                <span class="stack-chip"><span class="stack-dot"></span>Bootstrap</span>
+                <span class="stack-chip"><span class="stack-dot"></span>JavaScript (AJAX)</span>
+                <span class="stack-chip"><span class="stack-dot"></span>C#</span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top:none; margin-top:0;">
+                <div>© <span id="year"></span> Abdullah Manan. Built during internship — code is private, screenshots shown above.</div>
+                <div><a href="index.html#projects" style="color:var(--amber); font-family:'JetBrains Mono',monospace; font-size:.8rem; text-decoration:none;">← Back to Projects</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div id="shotLightbox" class="shot-lightbox">
+        <img id="shotLightboxImg" src="" alt="">
+        <div class="shot-caption" id="shotCaption"></div>
+    </div>
+
+    <script>
+        document.addEventListener('scroll', () => {
+            document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+        });
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // ---- Screenshots data: update src paths to your actual screenshot files ----
+        const screenshots = [
+            { label: 'Login / Register', src: 'images/project-invoice/login.png' },
+            { label: 'Dashboard', src: 'images/project-invoice/dashboard.png' },
+            { label: 'Invoice Create — Dynamic Line Items', src: 'images/project-invoice/invoice-create.png' },
+            { label: 'Sales Report', src: 'images/project-invoice/sales-report.png' },
+            { label: 'Product Report', src: 'images/project-invoice/product-report.png' },
+            { label: 'Manage Users', src: 'images/project-invoice/manage-users.png' },
+            { label: 'PDF Print View', src: 'images/project-invoice/print-view.png' }
+        ];
+
+        const grid = document.getElementById('screenshotGrid');
+        const lightbox = document.getElementById('shotLightbox');
+        const lightboxImg = document.getElementById('shotLightboxImg');
+        const caption = document.getElementById('shotCaption');
+
+        screenshots.forEach(shot => {
+            const card = document.createElement('div');
+            card.className = 'screenshot-card';
+            card.innerHTML = `
+                <div class="shot-image">
+                    <img src="${shot.src}" alt="${shot.label}" loading="lazy">
+                </div>
+                <div class="shot-label">${shot.label}</div>
+            `;
+            card.addEventListener('click', () => {
+                lightboxImg.src = shot.src;
+                lightboxImg.alt = shot.label;
+                caption.textContent = shot.label;
+                lightbox.classList.add('active');
+            });
+            grid.appendChild(card);
+        });
+
+        lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') lightbox.classList.remove('active');
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
