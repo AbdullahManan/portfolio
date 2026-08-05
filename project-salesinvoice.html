@@ -10,6 +10,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+    <link type="image/png" sizes="96x96" rel="icon" href="favicon2.png">
+
+    <link type="image/png" sizes="72x72" rel="icon" href="favicon3.png">
+
+    <link type="image/png" sizes="96x96" rel="icon" href="favicon3.png">
+
     <link rel="stylesheet" href="C.css">
 </head>
 
@@ -18,7 +24,7 @@
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand logo d-flex align-items-center" href="index.html#home">
-                <img src="images/profile.jpg" alt="Abdullah Manan" class="nav-avatar">
+                <img src="me.jpg" alt="Abdullah Manan" class="nav-avatar">
                 Abdullah Manan<span class="dot">.</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -44,7 +50,7 @@
             <h1>Sales Invoice Management System</h1>
             <p class="lede">
                 A full-stack ASP.NET Core MVC application for managing product inventory,
-                sales invoicing, and business reporting — built end-to-end during my internship.
+                sales invoicing, and business reporting, built end-to-end during my internship.
             </p>
 
             <div class="tech-badges">
@@ -66,9 +72,9 @@
             </div>
             <p class="overview-text">
                 Built during my internship to manage product inventory, sales invoicing, and
-                reporting for a small-business workflow. The system handles the full cycle —
-                from stock tracking and invoice creation to role-based staff access and printable
-                reports — replacing what would otherwise be a manual, spreadsheet-driven process
+                reporting for a small business workflow. The system covers the full operational
+                cycle: stock tracking, invoice creation, role-based staff access, and printable
+                reports, replacing what would otherwise be a manual, spreadsheet-driven process
                 with a structured, auditable web application.
             </p>
         </div>
@@ -98,7 +104,7 @@
                 <li>Role-based authentication (Admin / SalesRep) via ASP.NET Core Identity</li>
                 <li>Real-time stock validation during invoice creation</li>
                 <li>Dynamic multi-line invoice entry with live total calculation</li>
-                <li>Sales &amp; Product reports with multiple filter modes — date range, month, year, by-product</li>
+                <li>Sales &amp; Product reports with multiple filter modes like date range, month, year, by-product</li>
                 <li>PDF export via browser print, with a dedicated 80mm thermal receipt layout</li>
                 <li>Admin-only user management with password reset</li>
             </ul>
@@ -114,16 +120,28 @@
             </div>
 
             <div class="highlight-card">
-                <p><strong>Runtime stock availability.</strong> Rather than storing a mutable "remaining stock" field, available quantity is computed on the fly as opening stock minus the sum of quantities already committed across invoice line items — preventing overselling even when multiple invoices reference the same product concurrently.</p>
+                <p><strong>Role-based access with global authorization.</strong> Rather than decorating individual controllers, the entire application requires authentication by default via a global <code>AuthorizeFilter</code> policy, with explicit <code>[AllowAnonymous]</code> exceptions carved out only where needed. New controllers are secure by default, removing the risk of an endpoint being accidentally left unprotected.</p>
             </div>
             <div class="highlight-card">
-                <p><strong>Cross-row stock sync.</strong> When a product is added to more than one line item in the same invoice, the UI recalculates and caps available quantity live across all matching rows — not just the row being edited — so a user can't accidentally oversell a product within a single invoice.</p>
+                <p><strong>Admin-gated user provisioning.</strong> Self-registration is disabled entirely; new accounts can only be created by an authenticated Admin through a protected Register endpoint. A seeded Admin account and role set are provisioned automatically on first startup, so the system is never left in a state with no way to log in.</p>
             </div>
             <div class="highlight-card">
-                <p><strong>Print-safe layout isolation.</strong> Report and receipt views use a dedicated print layout with scoped <code>@@media print</code> rules, resolving CSS specificity conflicts between the admin theme and the print output so the printed document stays clean regardless of the active dashboard styling.</p>
+                <p><strong>Self-deletion guard.</strong> The user management module blocks an Admin from deleting their own account, preventing an accidental lockout scenario where the only authenticated administrator removes their own access.</p>
             </div>
             <div class="highlight-card">
-                <p><strong>Save-then-print flow.</strong> Invoice creation uses an AJAX save step before triggering the print dialog, ensuring the invoice is persisted and assigned a real ID before a receipt is generated — avoiding orphaned print-outs for invoices that failed validation.</p>
+                <p><strong>Admin-driven password resets.</strong> Passwords are never stored or exposed in readable form. Instead of a token-based email reset flow (unnecessary for an internal tool with a trusted Admin), password resets use Identity's <code>RemovePasswordAsync</code>/<code>AddPasswordAsync</code> pair, letting an Admin directly issue a new password for any account without needing the old one.</p>
+            </div>
+            <div class="highlight-card">
+                <p><strong>Purchase-driven inventory growth.</strong> Stock isn't manually edited; it only increases through recorded Purchase transactions. Each purchase line item directly increments the linked product's stock inside the same transaction that persists the purchase record, keeping stock movement and its originating record consistent.</p>
+            </div>
+            <div class="highlight-card">
+                <p><strong>Multi-mode sales reporting.</strong> The Sales Report supports four independent filter modes, custom date range, calendar month, calendar year, and per-product history, all resolving to a shared date-boundary calculation internally, so a single query pipeline serves every reporting view without duplicating aggregation logic per mode.</p>
+            </div>
+            <div class="highlight-card">
+                <p><strong>Derived inventory valuation.</strong> The Product Report distinguishes between <em>Stock Value</em> (unsold inventory still on hand) and <em>Sold Value</em> (revenue already realized from that product), both calculated live from invoice history rather than stored as static fields, so the figures never drift out of sync with actual transactions.</p>
+            </div>
+            <div class="highlight-card">
+                <p><strong>Separation of cost and price.</strong> Purchase line items record vendor unit cost independently from the product's selling price, keeping acquisition cost and sale price as distinct values, laying the groundwork for margin and profitability reporting without conflating what was paid with what's charged.</p>
             </div>
         </div>
     </section>
@@ -150,13 +168,45 @@
     </section>
 
     <footer class="site-footer">
+    <div class="container">
+        <div class="row gy-4">
+
+            <div class="col-lg-4">
+                <div class="footer-logo">Abdullah Manan<span class="dot">.</span></div>
+                <p class="footer-tagline">
+                    Jacks of all trades, master of some, always better than a master of one.
+                </p>
+            </div>
+
+            
+
+            <div class="col-6 col-lg-3">
+                <div class="footer-heading">Elsewhere</div>
+                <ul>
+                    <li><a href="https://github.com/AbdullahManan" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                    <li><a href="https://www.linkedin.com/in/abdullah-manan" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="footer-heading">Get in touch</div>
+                <ul>
+                    <li><a href="mailto:abdullahmanan1234@gmail.com" target="_blank" rel="noopener noreferrer">abdullahmanan1234@gmail.com</a></li>
+                </ul>
+            </div>
+
+        </div>
+
         <div class="container">
             <div class="footer-bottom" style="border-top:none; margin-top:0;">
-                <div>© <span id="year"></span> Abdullah Manan. Built during internship — code is private, screenshots shown above.</div>
+                <div>© <span id="year"></span> Abdullah Manan. Built during internship. Code is private, screenshots shown above.</div>
                 <div><a href="index.html#projects" style="color:var(--amber); font-family:'JetBrains Mono',monospace; font-size:.8rem; text-decoration:none;">← Back to Projects</a></div>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
+    
 
     <!-- LIGHTBOX -->
     <div id="shotLightbox" class="shot-lightbox">
@@ -173,6 +223,7 @@
         // ---- Screenshots data: update src paths to your actual screenshot files ----
         const screenshots = [
             { label: 'Login / Register', src: 'images/project-invoice/login.png' },
+            { label: 'Login / Register', src: 'images/project-invoice/products.png' },
             { label: 'Dashboard', src: 'images/project-invoice/dashboard.png' },
             { label: 'Invoice Create — Dynamic Line Items', src: 'images/project-invoice/invoice-create.png' },
             { label: 'Sales Report', src: 'images/project-invoice/sales-report.png' },
